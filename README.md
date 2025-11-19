@@ -10,14 +10,14 @@
 <details open>
 <summary><b>Motivation:</b></summary>
 
-![results3](./pic/motivation.png)
+![results3](./pic/figure1.png)
 
 </details>
 
 <details close>
 <summary><b>ICLR pipeline:</b></summary>
 
-![results3](./pic/pipeline.png)
+![results3](./pic/figure2.png)
 
 </details>
 
