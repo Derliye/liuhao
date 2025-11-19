@@ -24,24 +24,16 @@ def option():
     parser.add_argument('--data_train_lol_v1'       , type=str, default='./datasets/LOLdataset/our485')
     parser.add_argument('--data_train_lolv2_real'   , type=str, default='./datasets/LOLv2/Real_captured/Train')
     parser.add_argument('--data_train_lolv2_syn'    , type=str, default='./datasets/LOLv2/Synthetic/Train')
-    parser.add_argument('--data_train_SID'          , type=str, default='./datasets/Sony_total_dark/train')
-    parser.add_argument('--data_train_SICE'         , type=str, default='./datasets/SICE/Dataset/train')
 
     # validation input
     parser.add_argument('--data_val_lol_v1'         , type=str, default='./datasets/LOLdataset/eval15/low')
     parser.add_argument('--data_val_lolv2_real'     , type=str, default='./datasets/LOLv2/Real_captured/Test/Low')
     parser.add_argument('--data_val_lolv2_syn'      , type=str, default='./datasets/LOLv2/Synthetic/Test/Low')
-    parser.add_argument('--data_val_SID'            , type=str, default='./datasets/Sony_total_dark/eval/short')
-    parser.add_argument('--data_val_SICE_mix'       , type=str, default='./datasets/SICE/Dataset/eval/test')
-    parser.add_argument('--data_val_SICE_grad'      , type=str, default='./datasets/SICE/Dataset/eval/test')
 
     # validation groundtruth
     parser.add_argument('--data_valgt_lol_v1'       , type=str, default='./datasets/LOLdataset/eval15/high/')
     parser.add_argument('--data_valgt_lolv2_real'   , type=str, default='./datasets/LOLv2/Real_captured/Test/Normal/')
     parser.add_argument('--data_valgt_lolv2_syn'    , type=str, default='./datasets/LOLv2/Synthetic/Test/Normal/')
-    parser.add_argument('--data_valgt_SID'          , type=str, default='./datasets/Sony_total_dark/eval/long/')
-    parser.add_argument('--data_valgt_SICE_mix'     , type=str, default='./datasets/SICE/Dataset/eval/target/')
-    parser.add_argument('--data_valgt_SICE_grad'    , type=str, default='./datasets/SICE/Dataset/eval/target/')
 
     parser.add_argument('--val_folder', default='./results/', help='Location to save validation datasets')
 
@@ -58,7 +50,5 @@ def option():
     parser.add_argument('--lol_v1', type=bool, default=True)
     parser.add_argument('--lolv2_real', type=bool, default=False)
     parser.add_argument('--lolv2_syn', type=bool, default=False)
-    parser.add_argument('--SID', type=bool, default=False)
-    parser.add_argument('--SICE_mix', type=bool, default=False)
-    parser.add_argument('--SICE_grad', type=bool, default=False)
+
     return parser

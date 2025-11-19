@@ -12,11 +12,9 @@ import platform
 
 mea_parser = argparse.ArgumentParser(description='Measure')
 mea_parser.add_argument('--use_GT_mean', action='store_true', help='Use the mean of GT to rectify the output of the model')
-mea_parser.add_argument('--lol', action='store_true', help='measure lolv1 dataset')
+mea_parser.add_argument('--lol_v1', action='store_true', help='measure lolv1 dataset')
 mea_parser.add_argument('--lol_v2_real', action='store_true', help='measure lol_v2_real dataset')
 mea_parser.add_argument('--lol_v2_syn', action='store_true', help='measure lol_v2_syn dataset')
-mea_parser.add_argument('--SICE_grad', action='store_true', help='measure SICE_grad dataset')
-mea_parser.add_argument('--SICE_mix', action='store_true', help='measure SICE_mix dataset')
 mea = mea_parser.parse_args()
 
 def ssim(prediction, target):
@@ -123,7 +121,7 @@ def metrics(im_dir, label_dir, use_GT_mean):
 
 if __name__ == '__main__':
     
-    if mea.lol:
+    if mea.lol_v1:
         im_dir = './output/LOLv1/*.png'
         label_dir = './datasets/LOLdataset/eval15/high/'
     if mea.lol_v2_real:
@@ -132,12 +130,7 @@ if __name__ == '__main__':
     if mea.lol_v2_syn:
         im_dir = './output/LOLv2_syn/*.png'
         label_dir = './datasets/LOLv2/Synthetic/Test/Normal/'
-    if mea.SICE_grad:
-        im_dir = './output/SICE_grad/*.png'
-        label_dir = './datasets/SICE/SICE_Reshape/'
-    if mea.SICE_mix:
-        im_dir = './output/SICE_mix/*.png'
-        label_dir = './datasets/SICE/SICE_Reshape/'
+
 
     avg_psnr, avg_ssim, avg_lpips = metrics(im_dir, label_dir, use_GT_mean=True)
     print("===> Avg.PSNR: {:.4f} dB ".format(avg_psnr))

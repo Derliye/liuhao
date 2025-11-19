@@ -92,7 +92,7 @@ def checkpoint(epoch):
     
 def load_datasets():
     print('===> Loading datasets')
-    if opt.lol_v1 or opt.lolv2_real or opt.lolv2_syn or opt.SID or opt.SICE_mix or opt.SICE_grad:
+    if opt.lol_v1 or opt.lolv2_real or opt.lolv2_syn:
         if opt.lol_v1:
             train_set = get_lol_training_set(opt.data_train_lol_v1,size=opt.cropSize)
             training_data_loader = DataLoader(dataset=train_set, num_workers=opt.threads, batch_size=opt.batchSize, shuffle=True)
@@ -111,23 +111,6 @@ def load_datasets():
             test_set = get_eval_set(opt.data_val_lolv2_syn)
             testing_data_loader = DataLoader(dataset=test_set, num_workers=opt.threads, batch_size=1, shuffle=False)
         
-        if opt.SID:
-            train_set = get_SID_training_set(opt.data_train_SID,size=opt.cropSize)
-            training_data_loader = DataLoader(dataset=train_set, num_workers=opt.threads, batch_size=opt.batchSize, shuffle=True)
-            test_set = get_eval_set(opt.data_val_SID)
-            testing_data_loader = DataLoader(dataset=test_set, num_workers=opt.threads, batch_size=1, shuffle=False)
-            
-        if opt.SICE_mix:
-            train_set = get_SICE_training_set(opt.data_train_SICE,size=opt.cropSize)
-            training_data_loader = DataLoader(dataset=train_set, num_workers=opt.threads, batch_size=opt.batchSize, shuffle=True)
-            test_set = get_SICE_eval_set(opt.data_val_SICE_mix)
-            testing_data_loader = DataLoader(dataset=test_set, num_workers=opt.threads, batch_size=1, shuffle=False)
-            
-        if opt.SICE_grad:
-            train_set = get_SICE_training_set(opt.data_train_SICE,size=opt.cropSize)
-            training_data_loader = DataLoader(dataset=train_set, num_workers=opt.threads, batch_size=opt.batchSize, shuffle=True)
-            test_set = get_SICE_eval_set(opt.data_val_SICE_grad)
-            testing_data_loader = DataLoader(dataset=test_set, num_workers=opt.threads, batch_size=1, shuffle=False)
     else:
         raise Exception("should choose a dataset")
     return training_data_loader, testing_data_loader
@@ -214,18 +197,6 @@ if __name__ == '__main__':
                 output_folder = 'LOLv2_syn/'
                 label_dir = opt.data_valgt_lolv2_syn
                 
-            if opt.SID:
-                output_folder = 'SID/'
-                label_dir = opt.data_valgt_SID
-                npy = True
-            if opt.SICE_mix:
-                output_folder = 'SICE_mix/'
-                label_dir = opt.data_valgt_SICE_mix
-                norm_size = False
-            if opt.SICE_grad:
-                output_folder = 'SICE_grad/'
-                label_dir = opt.data_valgt_SICE_grad
-                norm_size = False
 
             im_dir = opt.val_folder + output_folder + '*.png'
             eval(model, testing_data_loader, model_out_path, opt.val_folder+output_folder, 
